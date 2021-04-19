@@ -36,13 +36,13 @@ function WelcomeScreen({ navigation }) {
 
         <View style={styles.socialMedia}>
           <TouchableOpacity onPress={() => console.log("Login with Google")}>
-            <MaterialCommunityIcons name="google" size={50} color="white" />
+            <MaterialCommunityIcons name="google" size={40} color="white" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => console.log("Login with Facebook")}>
-            <MaterialCommunityIcons name="facebook" size={50} color="white" />
+            <MaterialCommunityIcons name="facebook" size={40} color="white" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => console.log("Login with Twitter")}>
-            <MaterialCommunityIcons name="twitter" size={50} color="white" />
+            <MaterialCommunityIcons name="twitter" size={40} color="white" />
           </TouchableOpacity>
         </View>
       </View>
@@ -57,8 +57,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonsContainer: {
-    padding: 20,
+    paddingBottom: 40,
+
     width: "80%",
+
+    justifyContent: "center",
   },
 
   logo: {
@@ -72,7 +75,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   socialMedia: {
-    paddingTop: 20,
+    top: 20,
+
     flexDirection: "row",
     justifyContent: "space-around",
   },

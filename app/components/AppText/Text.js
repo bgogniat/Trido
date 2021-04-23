@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 
+import colors from "../../config/colors";
+
 function AppText({ children, style, ...otherProps }) {
   return (
     <Text style={[styles.text, style]} {...otherProps}>
@@ -11,17 +13,10 @@ function AppText({ children, style, ...otherProps }) {
 
 const styles = StyleSheet.create({
   text: {
-    color: "black",
-    ...Platform.select({
-      ios: {
-        fontSize: 20,
-        fontFamily: "Avenir",
-      },
-      android: {
-        fontSize: 18,
-        fontFamily: "Roboto",
-      },
-    }),
+    color: colors.black,
+
+    fontSize: 18,
+    fontFamily: "Roboto",
   },
 });
 

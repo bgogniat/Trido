@@ -8,8 +8,11 @@ import {
   View,
 } from "react-native";
 import colors from "../config/colors";
+
 import Button from "../components/Button";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AppText from "../components/AppText/Text";
+import { useFonts } from "expo-font";
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -21,11 +24,11 @@ function WelcomeScreen({ navigation }) {
       source={require("../assets/background.jpg")}
     >
       <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          source={require("../assets/logo_transparent.png")}
-        />
+        <Image style={styles.logo} source={require("../assets/logo.png")} />
+        <AppText style={styles.title}>Trido</AppText>
+        <AppText style={styles.tagline}>- Give it a second change</AppText>
       </View>
+
       <View style={styles.buttonsContainer}>
         <Button title="Login" onPress={() => console.log("Login")} />
         <Button
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonsContainer: {
-    paddingBottom: 40,
+    bottom: 50,
 
     width: "80%",
 
@@ -65,14 +68,28 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    width: 500,
-    height: 500,
+    width: 200,
+    height: 200,
   },
   logoContainer: {
+    top: 50,
     position: "absolute",
-    top: 10,
-
     alignItems: "center",
+  },
+  title: {
+    fontFamily: "permanentmarker-regular",
+
+    fontWeight: "bold",
+    color: colors.white,
+    fontSize: 35,
+  },
+
+  tagline: {
+    fontSize: 20,
+    fontWeight: "600",
+    paddingVertical: 10,
+    color: colors.white,
+    fontStyle: "italic",
   },
   socialMedia: {
     top: 20,

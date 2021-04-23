@@ -14,6 +14,27 @@ import Text from "../components/AppText/Text";
 import colors from "../config/colors";
 import AppSwitch from "../components/AppSwitch";
 
+const options = [
+  {
+    id: 1,
+    name: "Listings",
+    icon: "format-list-bulleted",
+    color: colors.primary,
+  },
+  {
+    id: 2,
+    name: "Messages",
+    icon: "mail",
+    color: colors.secondary,
+  },
+  {
+    id: 3,
+    name: "Settings",
+    icon: "cog",
+    color: colors.third,
+  },
+];
+
 function AccountScreen({ navigation }) {
   const [settingVisible, setSettingVisible] = useState(false);
 
@@ -37,55 +58,40 @@ function AccountScreen({ navigation }) {
               {"Bertrand"}
             </Text>
             <Text style={styles.subTitle} numberOfLines={2}>
-              {"Gogniat"}
+              {"bertrand-7@hotmail.com"}
             </Text>
           </View>
         </View>
       </TouchableHighlight>
       <View style={styles.separator} />
 
-      <TouchableHighlight
-        underlayColor={colors.light}
-        onPress={() => console.log("Listing")}
-      >
-        <View style={styles.subContainer}>
-          <Icon name="format-list-bulleted" backgroundColor={colors.primary} />
-          <View style={styles.detailsContainer}>
-            <Text style={styles.title}>{"Listing"}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-      <View style={styles.separator} />
-      <TouchableHighlight
-        underlayColor={colors.light}
-        onPress={() => console.log("Message")}
-      >
-        <View style={styles.subContainer}>
-          <Icon name="email" backgroundColor={colors.secondary} />
-          <View style={styles.detailsContainer}>
-            <Text style={styles.title}>{"Message"}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-      <View style={styles.separator} />
-      <TouchableHighlight
-        underlayColor={colors.light}
-        onPress={() => showSettings()}
-      >
-        <View style={styles.subContainer}>
-          <Icon name="account-settings" backgroundColor={colors.third} />
-          <View style={styles.detailsContainer}>
-            <Text style={styles.title}>{"Settings"}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-      {settingVisible && <AppSwitch title="Dark mode" enable={false} />}
-      <View style={styles.separator} />
+      <FlatList
+        style={{ marginTop: 30, marginBottom: 30 }}
+        data={options}
+        keyExtractor={(option) => option.id.toString()}
+        renderItem={({ item }) => (
+          <>
+            <TouchableHighlight
+              underlayColor={colors.light}
+              onPress={() => console.log(item.name)}
+            >
+              <View style={styles.subContainer}>
+                <Icon name={item.icon} backgroundColor={item.color} />
+                <View style={styles.detailsContainer}>
+                  <Text style={styles.title}>{item.name}</Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View style={styles.separator} />
+          </>
+        )}
+      />
+
       <TouchableHighlight
         underlayColor={colors.light}
         onPress={() => console.log("Log")}
       >
-        <View style={styles.subContainer}>
+        <View style={[styles.subContainer]}>
           <Icon name="logout" backgroundColor={colors.red} />
           <View style={styles.detailsContainer}>
             <Text style={styles.title}>{"Log out"}</Text>
@@ -98,6 +104,7 @@ function AccountScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
+    flex: 1,
   },
   subContainer: {
     alignItems: "center",
@@ -107,7 +114,6 @@ const styles = StyleSheet.create({
   },
   screen: {
     backgroundColor: colors.light,
-    flex: 1,
   },
   detailsContainer: {
     marginLeft: 10,

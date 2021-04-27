@@ -97,7 +97,7 @@ function LoginScreen(props) {
               >
                 <MaterialCommunityIcons
                   name={iconName}
-                  size={30}
+                  size={27}
                   colors={colors.medium}
                 />
               </TouchableOpacity>
@@ -115,23 +115,23 @@ function LoginScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    margin: 10,
   },
   logo: {
     width: 160,
     height: 160,
     alignSelf: "center",
-    bottom: 30,
+    marginBottom: 10,
   },
   input: {
     flexDirection: "row",
     backgroundColor: colors.light,
-    borderRadius: 25,
+    borderRadius: 15,
     padding: 15,
     marginVertical: 10,
   },
   icon: {
-    marginRight: 10,
+    marginRight: 15,
   },
 });
 

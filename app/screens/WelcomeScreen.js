@@ -26,15 +26,15 @@ function WelcomeScreen({ navigation }) {
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo.png")} />
         <AppText style={styles.title}>Trido</AppText>
-        <AppText style={styles.tagline}>- Give it a second change</AppText>
+        <AppText style={styles.tagline}>- Give it a second chance</AppText>
       </View>
 
       <View style={styles.buttonsContainer}>
-        <Button title="Login" onPress={() => console.log("Login")} />
+        <Button title="Login" onPress={() => navigation.navigate("Login")} />
         <Button
           title="Register"
           color="secondary"
-          onPress={() => console.log("Register")}
+          onPress={() => navigation.navigate("Register")}
         />
 
         <View style={styles.socialMedia}>
@@ -77,8 +77,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontFamily: "permanentmarker-regular",
-
     fontWeight: "bold",
     color: colors.white,
     fontSize: 35,

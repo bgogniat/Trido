@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
+import colors from "../config/colors";
 
 const listings = [
   {
@@ -9,7 +10,7 @@ const listings = [
     title: "New sofa",
     subTitle: "Good quality, used for 2 months",
     price: 100,
-    image: "../assets/background.jpg",
+    image: require("../assets/background.jpg"),
     category: "Furniture",
   },
   {
@@ -17,7 +18,7 @@ const listings = [
     title: "Stakeboard",
     subTitle: "Almost new",
     price: 25,
-    image: "../assets/background.jpg",
+    image: require("../assets/background.jpg"),
     category: "Sport",
   },
   {
@@ -25,7 +26,7 @@ const listings = [
     title: "Stakeboard",
     subTitle: "Almost new",
     price: 25,
-    image: "../assets/background.jpg",
+    image: require("../assets/background.jpg"),
     category: "Sport",
   },
   {
@@ -33,12 +34,12 @@ const listings = [
     title: "Stakeboard",
     subTitle: "Almost new",
     price: 25,
-    image: "../assets/background.jpg",
+    image: require("../assets/background.jpg"),
     category: "Sport",
   },
 ];
 
-function ListingsScreen(props) {
+function ListingsScreen({ navigation }) {
   return (
     <Screen>
       <FlatList
@@ -50,7 +51,7 @@ function ListingsScreen(props) {
             price={item.price}
             subTitle={item.subTitle}
             image={item.image}
-            onPress={() => console.log("Open listing")}
+            onPress={() => navigation.navigate("DetailListing", item)}
           />
         )}
       />
@@ -58,7 +59,5 @@ function ListingsScreen(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {},
-});
+const styles = StyleSheet.create({});
 export default ListingsScreen;

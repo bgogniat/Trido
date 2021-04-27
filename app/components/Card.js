@@ -15,10 +15,7 @@ function Card({ title, subTitle, price, image, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image
-          style={styles.image}
-          source={require("../assets/background.jpg")}
-        />
+        <Image style={styles.image} source={image} />
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{title}</AppText>
           <AppText style={styles.price}>{price} €</AppText>
@@ -32,7 +29,8 @@ function Card({ title, subTitle, price, image, onPress }) {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
-    margin: 20,
+    marginTop: 20,
+    marginHorizontal: 20,
     backgroundColor: colors.white,
     borderWidth: 4,
     borderColor: colors.light,

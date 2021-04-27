@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import Screen from "../components/Screen";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Icon from "../components/Icon";
 import Text from "../components/AppText/Text";
@@ -36,37 +37,29 @@ const options = [
 ];
 
 function AccountScreen({ navigation }) {
-  const [settingVisible, setSettingVisible] = useState(false);
-
-  const showSettings = () => {
-    if (settingVisible) {
-      setSettingVisible(false);
-    } else {
-      setSettingVisible(true);
-    }
-  };
   return (
-    <Screen style={styles.screen}>
-      <TouchableHighlight underlayColor={colors.light}>
-        <View style={styles.subContainer}>
+    <Screen>
+      <View style={styles.account}>
+        <TouchableHighlight underlayColor={colors.light}>
           <Image
             style={styles.image}
             source={require("../assets/background.jpg")}
           />
-          <View style={styles.detailsContainer}>
-            <Text style={styles.title} numberOfLines={1}>
-              {"Bertrand"}
-            </Text>
-            <Text style={styles.subTitle} numberOfLines={2}>
-              {"bertrand-7@hotmail.com"}
-            </Text>
-          </View>
+        </TouchableHighlight>
+        <View style={styles.accountInfo}>
+          <Text style={styles.title} numberOfLines={1}>
+            {"Bertrand"}
+          </Text>
+          <Text style={styles.subTitle} numberOfLines={1}>
+            {"bertrand-7@hotmail.com"}
+          </Text>
         </View>
-      </TouchableHighlight>
+      </View>
+
       <View style={styles.separator} />
 
       <FlatList
-        style={{ marginTop: 30, marginBottom: 30 }}
+        style={{ marginTop: 20, marginBottom: 20 }}
         data={options}
         keyExtractor={(option) => option.id.toString()}
         renderItem={({ item }) => (
@@ -80,6 +73,11 @@ function AccountScreen({ navigation }) {
                 <View style={styles.detailsContainer}>
                   <Text style={styles.title}>{item.name}</Text>
                 </View>
+                <MaterialCommunityIcons
+                  color={colors.medium}
+                  name="chevron-right"
+                  size={25}
+                />
               </View>
             </TouchableHighlight>
             <View style={styles.separator} />
@@ -112,18 +110,16 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: colors.white,
   },
-  screen: {
-    backgroundColor: colors.light,
-  },
+
   detailsContainer: {
-    marginLeft: 10,
+    marginLeft: 15,
     justifyContent: "center",
     flex: 1,
   },
   image: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 170,
+    height: 170,
+    borderRadius: 100,
   },
   title: {
     fontWeight: "500",
@@ -135,6 +131,15 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 2,
     backgroundColor: colors.light,
+  },
+  account: {
+    height: 250,
+    padding: 15,
+    backgroundColor: colors.white,
+    alignItems: "center",
+  },
+  accountInfo: {
+    alignItems: "center",
   },
 });
 

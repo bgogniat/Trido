@@ -19,13 +19,13 @@ const AddListingScreen = () => (
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => (
-  <Tab.Navigator tabBarOptions={{ showLabel: false }}>
+  <Tab.Navigator tabBarOptions={{ showLabel: true }}>
     <Tab.Screen
       name="Listings"
       component={ListingNavigator}
       options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="home" color={color} size={30} />
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="home" color={color} size={size} />
         ),
       }}
     ></Tab.Screen>
@@ -42,8 +42,8 @@ const AppNavigator = () => (
       name="Account"
       component={AccountNavigator}
       options={{
-        tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="account" color={color} size={30} />
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="account" color={color} size={size} />
         ),
       }}
     ></Tab.Screen>

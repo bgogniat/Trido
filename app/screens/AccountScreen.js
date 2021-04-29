@@ -58,32 +58,33 @@ function AccountScreen({ navigation }) {
 
       <View style={styles.separator} />
 
-      <FlatList
-        style={{ marginTop: 20, marginBottom: 20 }}
-        data={options}
-        keyExtractor={(option) => option.id.toString()}
-        renderItem={({ item }) => (
-          <>
-            <TouchableHighlight
-              underlayColor={colors.light}
-              onPress={() => console.log(item.name)}
-            >
-              <View style={styles.subContainer}>
-                <Icon name={item.icon} backgroundColor={item.color} />
-                <View style={styles.detailsContainer}>
-                  <Text style={styles.title}>{item.name}</Text>
+      <View style={styles.container}>
+        <FlatList
+          data={options}
+          keyExtractor={(option) => option.id.toString()}
+          renderItem={({ item }) => (
+            <>
+              <TouchableHighlight
+                underlayColor={colors.light}
+                onPress={() => console.log(item.name)}
+              >
+                <View style={styles.subContainer}>
+                  <Icon name={item.icon} backgroundColor={item.color} />
+                  <View style={styles.detailsContainer}>
+                    <Text style={styles.title}>{item.name}</Text>
+                  </View>
+                  <MaterialCommunityIcons
+                    color={colors.medium}
+                    name="chevron-right"
+                    size={25}
+                  />
                 </View>
-                <MaterialCommunityIcons
-                  color={colors.medium}
-                  name="chevron-right"
-                  size={25}
-                />
-              </View>
-            </TouchableHighlight>
-            <View style={styles.separator} />
-          </>
-        )}
-      />
+              </TouchableHighlight>
+              <View style={styles.separator} />
+            </>
+          )}
+        />
+      </View>
 
       <TouchableHighlight
         underlayColor={colors.light}
@@ -101,8 +102,8 @@ function AccountScreen({ navigation }) {
 }
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 20,
-    flex: 1,
+    marginTop: 20,
+    marginBottom: 20,
   },
   subContainer: {
     alignItems: "center",
@@ -135,6 +136,7 @@ const styles = StyleSheet.create({
   account: {
     height: 250,
     padding: 15,
+    marginTop: -20,
     backgroundColor: colors.white,
     alignItems: "center",
   },

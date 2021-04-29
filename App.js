@@ -12,19 +12,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
+import AddListingScreen from "./app/screens/AddListingScreen";
+import ImagePickerInput from "./app/components/ImagePickerInput";
+import ListImagePicker from "./app/components/ListImagePicker";
 
 export default function App() {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
+      <AddListingScreen />
     </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

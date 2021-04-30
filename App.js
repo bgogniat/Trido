@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Picker, StyleSheet, Text, View } from "react-native";
 import Card from "./app/components/Card";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
@@ -15,6 +15,9 @@ import navigationTheme from "./app/navigation/navigationTheme";
 import AddListingScreen from "./app/screens/AddListingScreen";
 import ImagePickerInput from "./app/components/ImagePickerInput";
 import ListImagePicker from "./app/components/ListImagePicker";
+
+import Screen from "./app/components/Screen";
+import CategoryPicker from "./app/components/CategoryPicker";
 
 export default function App() {
   return (

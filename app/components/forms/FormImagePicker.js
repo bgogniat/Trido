@@ -25,6 +25,7 @@ function FormImagePicker({ name, errors, setFieldValue, touched, values }) {
         onAddImage={handleAdd}
         onRemoveImage={handleRemove}
       />
+      {touched[name] && <Text style={{ color: "red" }}>{errors[name]}</Text>}
     </>
   );
 }

@@ -28,7 +28,8 @@
     "react-native-screens": "~2.15.2",
     "react-native-web": "~0.13.12",
     "yup": "^0.32.9",
-    "expo-image-picker": "~9.2.0"
+    "expo-image-picker": "~9.2.0",
+    "@react-native-picker/picker": "1.9.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

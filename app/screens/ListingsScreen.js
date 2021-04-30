@@ -41,7 +41,7 @@ const listings = [
 
 function ListingsScreen({ navigation }) {
   return (
-    <Screen>
+    <Screen style={{ backgroundColor: colors.light }}>
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}

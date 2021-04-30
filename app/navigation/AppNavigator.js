@@ -6,15 +6,10 @@ import ListingsScreen from "../screens/ListingsScreen";
 import { Text, View } from "react-native";
 import AccountScreen from "../screens/AccountScreen";
 import ListingNavigator from "./ListingNavigator";
+import AddListingScreen from "../screens/AddListingScreen";
 import AccountNavigator from "./AccountNavigator";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AddButton from "./AddButton";
-
-const AddListingScreen = () => (
-  <View>
-    <Text>AddListing screen</Text>
-  </View>
-);
 
 const Tab = createBottomTabNavigator();
 
@@ -30,11 +25,11 @@ const AppNavigator = () => (
       }}
     ></Tab.Screen>
     <Tab.Screen
-      name="AddListing"
+      name="AddListingScreen"
       component={AddListingScreen}
       options={({ navigation }) => ({
         tabBarButton: () => (
-          <AddButton onPress={() => navigation.navigate("AddListing")} />
+          <AddButton onPress={() => navigation.navigate("AddListingScreen")} />
         ),
       })}
     />

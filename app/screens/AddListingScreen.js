@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Image,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import Screen from "../components/Screen";
-
+import TextInput from "../components/TextInput";
+import AppText from "../components/AppText/Text";
 import * as Yup from "yup";
 
 import FormImagePicker from "../components/forms/FormImagePicker";
 import colors from "../config/colors";
+import CategoryPicker from "../components/CategoryPicker";
+import Button from "../components/Button";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -52,6 +49,38 @@ function AddListingScreen(props) {
           values,
         }) => (
           <>
+            <TextInput
+              placeholder="Titre"
+              autoCorrect={false}
+              name="title"
+              onBlur={() => setFieldTouched("title")}
+              onChangeText={handleChange("title")}
+            />
+            {touched.title && (
+              <AppText style={{ color: "red" }}>{errors.title}</AppText>
+            )}
+            <CategoryPicker
+              selectedItem={values["category"]}
+              onSelectItem={(item) => setFieldValue("category", item)}
+            />
+
+            <TextInput
+              width="30%"
+              placeholder="Price"
+              maxLength={8}
+              keyboardType="numeric"
+              onBlur={() => setFieldTouched("price")}
+              onChangeText={handleChange("price")}
+            />
+            <TextInput
+              placeholder="Description"
+              maxLength={40}
+              autoCapitalize="none"
+              autoCompleteType="email"
+              keyboardType="email-address"
+              onBlur={() => setFieldTouched("email")}
+              onChangeText={handleChange("email")}
+            />
             <FormImagePicker
               name="images"
               errors={errors}
@@ -59,24 +88,7 @@ function AddListingScreen(props) {
               touched={touched}
               values={values}
             />
-            <View style={styles.input}>
-              <MaterialCommunityIcons
-                name={"email"}
-                size={30}
-                colors={colors.medium}
-                style={styles.icon}
-              />
-              <TextInput
-                style={{ width: "100%" }}
-                icon="mail"
-                placeholder="Enter your email"
-                autoCapitalize="none"
-                autoCompleteType="email"
-                keyboardType="email-address"
-                onBlur={() => setFieldTouched("email")}
-                onChangeText={handleChange("email")}
-              />
-            </View>
+            <Button title="Publish" onPress={handleSubmit} />
           </>
         )}
       </Formik>
@@ -87,16 +99,6 @@ function AddListingScreen(props) {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-  },
-  input: {
-    flexDirection: "row",
-    backgroundColor: colors.light,
-    borderRadius: 15,
-    padding: 15,
-    marginVertical: 10,
-  },
-  icon: {
-    marginRight: 15,
   },
 });
 

@@ -38,7 +38,7 @@ const options = [
 
 function AccountScreen({ navigation }) {
   return (
-    <Screen>
+    <Screen style={{ backgroundColor: colors.light }}>
       <View style={styles.account}>
         <TouchableHighlight underlayColor={colors.light}>
           <Image

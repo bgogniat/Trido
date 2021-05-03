@@ -3,12 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Text, View } from "react-native";
 import LoginScreen from "../screens/LoginScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
-
-const RegisterScreen = () => (
-  <View>
-    <Text>Register screen</Text>
-  </View>
-);
+import SignupScreen from "../screens/SignupScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,8 +14,16 @@ const AuthNavigator = () => (
       component={WelcomeScreen}
       options={{ headerShown: false }}
     />
-    <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="Register" component={RegisterScreen} />
+    <Stack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="Sign up"
+      component={SignupScreen}
+      options={{ headerShown: false }}
+    />
   </Stack.Navigator>
 );
 

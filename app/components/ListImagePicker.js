@@ -47,7 +47,7 @@ function ListImagePicker({ imageUris = [], onRemoveImage, onAddImage }) {
 const styles = StyleSheet.create({
   screen: {
     alignItems: "center",
-    margin: 15,
+    margin: 10,
   },
   container: {
     flexDirection: "row",

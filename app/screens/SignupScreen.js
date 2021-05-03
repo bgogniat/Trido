@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Image, View, Alert } from "react-native";
 import * as Yup from "yup";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as firebase from "firebase";
 
 import Screen from "../components/Screen";
 
@@ -11,13 +12,42 @@ import Button from "../components/Button";
 import Text from "../components/AppText/Text";
 import TextInput from "../components/TextInput";
 
+import { useAuth } from "../context/AuthContext";
+
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
-  password: Yup.string().required().min(4).label("Password"),
+  password: Yup.string().required().min(6).label("Password"),
 });
 
-function SignupScreen(props) {
+function SignupScreen({ navigation }) {
+  const { signup } = useAuth();
+
+  const [loading, setLoading] = useState(false);
+
+  const onHandleSubmit = async (email, password) => {
+    try {
+      setLoading(true);
+      await signup(email, password);
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+    setLoading(false);
+  };
+
+  const onSignupPress = (email, password) => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(
+        () => {
+          Alert.alert("Welcome on board");
+        },
+        (error) => {
+          Alert.alert(error.message);
+        }
+      );
+  };
   return (
     <Screen style={styles.container}>
       <View style={styles.logoContainer}>
@@ -25,7 +55,9 @@ function SignupScreen(props) {
       </View>
       <Formik
         initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) =>
+          onHandleSubmit(values["email"], values["password"])
+        }
         validationSchema={validationSchema}
       >
         {({
@@ -75,7 +107,14 @@ function SignupScreen(props) {
               <Text style={styles.error}>{errors.password}</Text>
             )}
 
-            <Button title="Sign up" onPress={handleSubmit} />
+            <View style={styles.buttonContainer}>
+              <Button title="Sign up" onPress={handleSubmit} />
+              <Button
+                title="Login"
+                color="secondary"
+                onPress={() => navigation.navigate("Login")}
+              />
+            </View>
           </>
         )}
       </Formik>
@@ -86,7 +125,13 @@ function SignupScreen(props) {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+    marginTop: 30,
   },
+
+  buttonContainer: {
+    marginTop: 20,
+  },
+
   logo: {
     width: 160,
     height: 160,

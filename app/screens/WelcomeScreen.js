@@ -12,7 +12,6 @@ import colors from "../config/colors";
 import Button from "../components/Button";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "../components/AppText/Text";
-import { useFonts } from "expo-font";
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -32,9 +31,9 @@ function WelcomeScreen({ navigation }) {
       <View style={styles.buttonsContainer}>
         <Button title="Login" onPress={() => navigation.navigate("Login")} />
         <Button
-          title="Register"
+          title="Sign up"
           color="secondary"
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate("Sign up")}
         />
 
         <View style={styles.socialMedia}>

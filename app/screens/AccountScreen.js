@@ -6,6 +6,7 @@ import {
   FlatList,
   TouchableHighlight,
   Image,
+  Alert,
 } from "react-native";
 import Screen from "../components/Screen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -13,7 +14,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Icon from "../components/Icon";
 import Text from "../components/AppText/Text";
 import colors from "../config/colors";
-import AppSwitch from "../components/AppSwitch";
+import { useAuth } from "../context/AuthContext";
 
 const options = [
   {
@@ -37,6 +38,25 @@ const options = [
 ];
 
 function AccountScreen({ navigation }) {
+  const { currentUser, logout } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const isLoggingOut = () => {
+    Alert.alert("Log out", "Are you sure you want to log out?", [
+      { text: "Yes", onPress: () => onLogOut() },
+      { text: "No" },
+    ]);
+  };
+
+  const onLogOut = async () => {
+    try {
+      setLoading(true);
+      await logout();
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+    setLoading(false);
+  };
+
   return (
     <Screen style={{ backgroundColor: colors.light }}>
       <View style={styles.account}>
@@ -51,7 +71,7 @@ function AccountScreen({ navigation }) {
             {"Bertrand"}
           </Text>
           <Text style={styles.subTitle} numberOfLines={1}>
-            {"bertrand-7@hotmail.com"}
+            {currentUser.email}
           </Text>
         </View>
       </View>
@@ -86,10 +106,7 @@ function AccountScreen({ navigation }) {
         />
       </View>
 
-      <TouchableHighlight
-        underlayColor={colors.light}
-        onPress={() => console.log("Log")}
-      >
+      <TouchableHighlight underlayColor={colors.light} onPress={isLoggingOut}>
         <View style={[styles.subContainer]}>
           <Icon name="logout" backgroundColor={colors.red} />
           <View style={styles.detailsContainer}>
@@ -136,7 +153,7 @@ const styles = StyleSheet.create({
   account: {
     height: 250,
     padding: 15,
-    marginTop: -20,
+    marginTop: -5,
     backgroundColor: colors.white,
     alignItems: "center",
   },

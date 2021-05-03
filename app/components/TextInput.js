@@ -6,15 +6,15 @@ import defaultStyles from "../config/styles";
 import colors from "../config/colors";
 
 function AppTextInput({ icon, width = "100%", pwd = false, ...otherProps }) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(pwd);
   const [iconName, setIconName] = useState("eye");
   const passwordVisible = () => {
-    if (visible) {
-      setVisible(false);
-      setIconName("eye-off");
-    } else {
+    if (!visible) {
       setVisible(true);
       setIconName("eye");
+    } else {
+      setVisible(false);
+      setIconName("eye-off");
     }
   };
   return (
@@ -41,7 +41,6 @@ function AppTextInput({ icon, width = "100%", pwd = false, ...otherProps }) {
           }}
         >
           <TouchableOpacity
-            title="Visible"
             onPress={() => passwordVisible()}
             style={{ alignSelf: "flex-end" }}
           >

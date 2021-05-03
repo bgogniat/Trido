@@ -7,6 +7,7 @@ import {
   Modal,
   FlatList,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "./AppText/Text";
@@ -123,7 +124,7 @@ function CategoryPicker({
           }}
         >
           <View style={styles.modalContainer}>
-            <ScrollView>
+            <SafeAreaView>
               <FlatList
                 data={items}
                 keyExtractor={(item) => item.value.toString()}
@@ -147,7 +148,7 @@ function CategoryPicker({
                   </TouchableOpacity>
                 )}
               />
-            </ScrollView>
+            </SafeAreaView>
           </View>
         </TouchableOpacity>
       </Modal>
@@ -189,6 +190,8 @@ const styles = StyleSheet.create({
     padding: 15,
     position: "absolute",
     bottom: 100,
+    borderWidth: 5,
+    borderColor: colors.white,
   },
   screenBackground: {
     flex: 1,

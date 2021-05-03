@@ -1,17 +1,28 @@
-import React from "react";
-import { View, StyleSheet, TextInput } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import defaultStyles from "../config/styles";
 import colors from "../config/colors";
 
-function AppTextInput({ icon, width = "100%", ...otherProps }) {
+function AppTextInput({ icon, width = "100%", pwd = false, ...otherProps }) {
+  const [visible, setVisible] = useState(false);
+  const [iconName, setIconName] = useState("eye");
+  const passwordVisible = () => {
+    if (visible) {
+      setVisible(false);
+      setIconName("eye-off");
+    } else {
+      setVisible(true);
+      setIconName("eye");
+    }
+  };
   return (
     <View style={[styles.container, { width }]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
-          size={20}
+          size={25}
           colors={defaultStyles.colors.medium}
           style={styles.icon}
         />
@@ -19,8 +30,29 @@ function AppTextInput({ icon, width = "100%", ...otherProps }) {
       <TextInput
         placeholderTextColor={defaultStyles.colors.medium}
         style={defaultStyles.text}
+        secureTextEntry={visible}
         {...otherProps}
-      ></TextInput>
+      />
+
+      {pwd && (
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <TouchableOpacity
+            title="Visible"
+            onPress={() => passwordVisible()}
+            style={{ alignSelf: "flex-end" }}
+          >
+            <MaterialCommunityIcons
+              name={iconName}
+              size={25}
+              colors={colors.medium}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
@@ -28,6 +60,7 @@ function AppTextInput({ icon, width = "100%", ...otherProps }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.light,
+
     borderRadius: 15,
     flexDirection: "row",
 

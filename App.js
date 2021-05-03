@@ -18,11 +18,12 @@ import ListImagePicker from "./app/components/ListImagePicker";
 
 import Screen from "./app/components/Screen";
 import CategoryPicker from "./app/components/CategoryPicker";
+import SignupScreen from "./app/screens/SignupScreen";
 
 export default function App() {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <AddListingScreen />
+      <SignupScreen />
     </NavigationContainer>
   );
 }

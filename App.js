@@ -25,13 +25,13 @@ import SignupScreen from "./app/screens/SignupScreen";
 import { AuthProvider } from "./app/context/AuthContext";
 
 import CheckUser from "./app/auth/CheckUser";
-import firebase from "firebase/firestore";
-import Firestore from "./app/storage/Firestore";
+import AppActivityIndicator from "./app/components/AppActivityIndicator";
+
 export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer theme={navigationTheme}>
-        <Firestore />
+        <ListingsScreen />
       </NavigationContainer>
     </AuthProvider>
   );

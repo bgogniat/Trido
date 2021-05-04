@@ -22,6 +22,7 @@ function CategoryPicker({
   width = "60%",
 }) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [internItem, setInternItem] = useState();
 
   const items = [
     {
@@ -86,11 +87,11 @@ function CategoryPicker({
           {selectedItem ? (
             <>
               <Icon
-                backgroundColor={selectedItem.backgroundColor}
-                name={selectedItem.icon}
+                backgroundColor={internItem.backgroundColor}
+                name={internItem.icon}
                 size={30}
               />
-              <AppText style={styles.text}>{selectedItem.label}</AppText>
+              <AppText style={styles.text}>{selectedItem}</AppText>
             </>
           ) : (
             <>
@@ -133,6 +134,7 @@ function CategoryPicker({
                     onPress={() => {
                       setModalVisible(false);
                       onSelectItem(item);
+                      setInternItem(item);
                     }}
                   >
                     <View style={styles.subContainer}>

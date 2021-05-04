@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 
 import { auth } from "../auth/firebase";
+import AppActivityIndicator from "../components/AppActivityIndicator";
 
 const AuthContext = React.createContext();
 
@@ -9,28 +10,27 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-export function AuthProvider({ children, naviagation }) {
+export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
   function signup(email, password) {
+    setLoading(true);
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
   function login(email, password) {
-    setIsAuthenticated(true);
-
+    setLoading(true);
     return auth.signInWithEmailAndPassword(email, password);
   }
   function logout() {
-    setIsAuthenticated(false);
+    setLoading(true);
     return auth.signOut();
   }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      console.log(user);
       setCurrentUser(user);
       setLoading(false);
     });
@@ -40,14 +40,14 @@ export function AuthProvider({ children, naviagation }) {
 
   const value = {
     currentUser,
-    isAuthenticated,
+
     signup,
     login,
     logout,
   };
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {!loading ? children : <AppActivityIndicator />}
     </AuthContext.Provider>
   );
 }

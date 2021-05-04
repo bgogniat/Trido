@@ -16,13 +16,13 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().required().min(1).label("Description"),
-  category: Yup.object().required().nullable().label("Category"),
+  category: Yup.string().required().nullable().label("Category"),
   images: Yup.array().min(1, "Please select at least one image"),
 });
 
 function AddListingScreen(props) {
-  const handleSubmit = async ({ resetForm }) => {
-    console.log("Success");
+  const handleSubmit = async (listing, { resetForm }) => {
+    console.log(listing);
     resetForm();
   };
 
@@ -36,7 +36,7 @@ function AddListingScreen(props) {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         {({
@@ -52,14 +52,15 @@ function AddListingScreen(props) {
             <TextInput
               placeholder="Title"
               autoCorrect={false}
-              name="title"
+              value={values["title"]}
               onBlur={() => setFieldTouched("title")}
               onChangeText={handleChange("title")}
             />
             {touched.title && <Text style={styles.error}>{errors.title}</Text>}
             <CategoryPicker
               selectedItem={values["category"]}
-              onSelectItem={(item) => setFieldValue("category", item)}
+              onSelectItem={(item) => setFieldValue("category", item.label)}
+              value={values["category"]}
             />
             {touched.category && (
               <Text style={styles.error}>{errors.category}</Text>
@@ -68,6 +69,7 @@ function AddListingScreen(props) {
             <TextInput
               width="30%"
               placeholder="Price"
+              value={values["price"]}
               maxLength={8}
               keyboardType="numeric"
               onBlur={() => setFieldTouched("price")}
@@ -76,6 +78,7 @@ function AddListingScreen(props) {
             {touched.price && <Text style={styles.error}>{errors.price}</Text>}
             <TextInput
               placeholder="Description"
+              value={values["description"]}
               maxLength={40}
               onBlur={() => setFieldTouched("description")}
               onChangeText={handleChange("description")}

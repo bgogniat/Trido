@@ -39,8 +39,6 @@ function ImagePickerInput({ imageUri, onChangeImage, size = 150 }) {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       onChangeImage(result.uri);
     }

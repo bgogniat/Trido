@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { StyleSheet, Image, View, Alert } from "react-native";
-import * as Yup from "yup";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import * as firebase from "firebase";
-
-import Screen from "../components/Screen";
-
+import { useAuth } from "../context/AuthContext";
 import { Formik } from "formik";
-import colors from "../config/colors";
+import * as Yup from "yup";
+
 import Button from "../components/Button";
+import Screen from "../components/Screen";
 import Text from "../components/AppText/Text";
 import TextInput from "../components/TextInput";
-
-import { useAuth } from "../context/AuthContext";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -35,19 +30,6 @@ function SignupScreen({ navigation }) {
     setLoading(false);
   };
 
-  const onSignupPress = (email, password) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(
-        () => {
-          Alert.alert("Welcome on board");
-        },
-        (error) => {
-          Alert.alert(error.message);
-        }
-      );
-  };
   return (
     <Screen style={styles.container}>
       <View style={styles.logoContainer}>

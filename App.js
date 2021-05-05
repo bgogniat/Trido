@@ -26,12 +26,13 @@ import { AuthProvider } from "./app/context/AuthContext";
 
 import CheckUser from "./app/auth/CheckUser";
 import AppActivityIndicator from "./app/components/AppActivityIndicator";
+import UploadScreen from "./app/screens/UploadScreen";
 
 export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer theme={navigationTheme}>
-        <ListingsScreen />
+        <CheckUser />
       </NavigationContainer>
     </AuthProvider>
   );

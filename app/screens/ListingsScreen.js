@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
-import Card from "../components/Card";
-import Screen from "../components/Screen";
-import colors from "../config/colors";
 
-import listingsApi from "../api/listings";
-import { useState } from "react";
-import { useEffect } from "react";
 import AppActivityIndicator from "../components/AppActivityIndicator";
 import AppText from "../components/AppText/Text";
 import Button from "../components/Button";
+import Card from "../components/Card";
+import colors from "../config/colors";
+import listingsApi from "../api/listings";
+import Screen from "../components/Screen";
 
+//Data example
 const listings = [
   {
     id: 1,
     title: "New sofa",
-    subTitle: "Good quality, used for 2 months",
+    description: "Good quality, used for 2 months",
     price: 100,
     image: require("../assets/background.jpg"),
     category: "Furniture",
@@ -23,7 +22,7 @@ const listings = [
   {
     id: 2,
     title: "Stakeboard",
-    subTitle: "Almost new",
+    description: "Almost new",
     price: 25,
     image: require("../assets/background.jpg"),
     category: "Sport",
@@ -32,16 +31,18 @@ const listings = [
 
 function ListingsScreen({ navigation }) {
   const [data, setData] = useState();
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
+    setError(false);
     setLoading(true);
     listingsApi
       .getListings()
       .then((listings) => setData(listings))
       .catch((error) => {
-        setError(!!error);
+        setError(true);
+        console.log(error);
       });
 
     setLoading(false);
@@ -64,7 +65,7 @@ function ListingsScreen({ navigation }) {
         ) : (
           <FlatList
             data={data}
-            keyExtractor={(listing) => listing.toString()}
+            keyExtractor={(data) => data.id}
             renderItem={({ item }) => (
               <Card
                 title={item.title}
@@ -81,5 +82,4 @@ function ListingsScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
 export default ListingsScreen;

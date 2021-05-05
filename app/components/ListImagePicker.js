@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
-import ImagePickerInput from "./ImagePickerInput";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import colors from "../config/colors";
+import ImagePickerInput from "./ImagePickerInput";
 
 function ListImagePicker({ imageUris = [], onRemoveImage, onAddImage }) {
   const scrollView = useRef();

@@ -19,6 +19,7 @@ function Card({ title, description, price, imageUrl, onPress }) {
             uri: imageUrl,
           }}
         />
+
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{title}</AppText>
           <AppText style={styles.price}>{price} €</AppText>

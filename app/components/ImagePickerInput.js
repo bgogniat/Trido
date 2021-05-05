@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Image,
   View,
@@ -6,10 +6,11 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import colors from "../config/colors";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+
+import colors from "../config/colors";
 
 function ImagePickerInput({ imageUri, onChangeImage, size = 150 }) {
   useEffect(() => {

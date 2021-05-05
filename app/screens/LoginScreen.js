@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, Image, View, Alert } from "react-native";
-import * as Yup from "yup";
-import { useAuth } from "../context/AuthContext";
-import Button from "../components/Button";
-import { Formik } from "formik";
-import Screen from "../components/Screen";
 
+import { useAuth } from "../context/AuthContext";
+import { Formik } from "formik";
+import * as Yup from "yup";
+
+import Button from "../components/Button";
+import Screen from "../components/Screen";
 import Text from "../components/AppText/Text";
 import TextInput from "../components/TextInput";
 
@@ -16,7 +17,7 @@ const validationSchema = Yup.object().shape({
 
 function LoginScreen({ navigation }) {
   const { login } = useAuth();
-  const { currentUser } = useAuth();
+
   const [loading, setLoading] = useState(false);
 
   const onHandleSubmit = async (email, password) => {

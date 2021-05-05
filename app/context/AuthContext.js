@@ -16,20 +16,18 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function signup(email, password) {
-    setLoading(true);
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
   function login(email, password) {
-    setLoading(true);
     return auth.signInWithEmailAndPassword(email, password);
   }
   function logout() {
-    setLoading(true);
     return auth.signOut();
   }
 
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);

@@ -3,15 +3,14 @@ import {
   Image,
   ImageBackground,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import colors from "../config/colors";
-
-import Button from "../components/Button";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import AppText from "../components/AppText/Text";
+import Button from "../components/Button";
+import colors from "../config/colors";
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -90,7 +89,6 @@ const styles = StyleSheet.create({
   },
   socialMedia: {
     top: 20,
-
     flexDirection: "row",
     justifyContent: "space-around",
   },

@@ -1,8 +1,7 @@
 import React from "react";
-import { useFormikContext } from "formik";
-import { StyleSheet } from "react-native";
-import Text from "../AppText/Text";
+
 import ListImagePicker from "../ListImagePicker";
+import Text from "../AppText/Text";
 
 function FormImagePicker({ name, errors, setFieldValue, touched, values }) {
   const imageUris = values[name];
@@ -25,7 +24,11 @@ function FormImagePicker({ name, errors, setFieldValue, touched, values }) {
         onAddImage={handleAdd}
         onRemoveImage={handleRemove}
       />
-      {touched[name] && <Text style={{ color: "red" }}>{errors[name]}</Text>}
+      {touched[name] && (
+        <Text style={{ color: "red", margin: -10, marginLeft: 10 }}>
+          {errors[name]}
+        </Text>
+      )}
     </>
   );
 }

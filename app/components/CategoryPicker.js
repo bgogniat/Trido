@@ -6,12 +6,11 @@ import {
   TouchableOpacity,
   Modal,
   FlatList,
-  ScrollView,
   SafeAreaView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AppText from "./AppText/Text";
 
+import AppText from "./AppText/Text";
 import colors from "../config/colors";
 import Icon from "./Icon";
 

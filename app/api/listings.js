@@ -63,6 +63,7 @@ const uploadListing = async (listing) => {
     .doc(refID)
     .update({
       images: urls,
+      id: refID,
     })
     .then(() => console.log("images updated"));
 };

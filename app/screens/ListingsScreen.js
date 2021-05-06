@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 
 import AppActivityIndicator from "../components/AppActivityIndicator";
 import AppText from "../components/AppText/Text";
@@ -31,8 +37,14 @@ const listings = [
 
 function ListingsScreen({ navigation }) {
   const [data, setData] = useState();
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData().then(() => setRefreshing(false));
+  }, []);
 
   const getData = async () => {
     setError(false);
@@ -63,19 +75,25 @@ function ListingsScreen({ navigation }) {
             <Button title="Give it a second chance" onPress={getData} />
           </View>
         ) : (
-          <FlatList
-            data={data}
-            keyExtractor={(data) => data.id}
-            renderItem={({ item }) => (
-              <Card
-                title={item.title}
-                price={item.price}
-                description={item.description}
-                imageUrl={item.images[0]}
-                onPress={() => navigation.navigate("DetailListing", item)}
-              />
-            )}
-          />
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            <FlatList
+              data={data}
+              keyExtractor={(data) => data.id}
+              renderItem={({ item }) => (
+                <Card
+                  title={item.title}
+                  price={item.price}
+                  description={item.description}
+                  imageUrl={item.images[0]}
+                  onPress={() => navigation.navigate("DetailListing", item)}
+                />
+              )}
+            />
+          </ScrollView>
         )}
       </Screen>
     </>

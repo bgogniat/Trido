@@ -27,12 +27,14 @@ import { AuthProvider } from "./app/context/AuthContext";
 import CheckUser from "./app/auth/CheckUser";
 import AppActivityIndicator from "./app/components/AppActivityIndicator";
 import UploadScreen from "./app/screens/UploadScreen";
+import DetailListingScreen from "./app/screens/DetailListingScreen";
+import ProfilePicture from "./app/components/ProfilePicture";
 
 export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer theme={navigationTheme}>
-        <CheckUser />
+        <ProfilePicture />
       </NavigationContainer>
     </AuthProvider>
   );

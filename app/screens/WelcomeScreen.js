@@ -11,8 +11,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "../components/AppText/Text";
 import Button from "../components/Button";
 import colors from "../config/colors";
+import { useAuth } from "../context/AuthContext";
 
 function WelcomeScreen({ navigation }) {
+  const { loginPopup } = useAuth();
+
+  const loginWithGoogle = () => {
+    loginPopup();
+  };
   return (
     <ImageBackground
       blurRadius={1}
@@ -36,7 +42,7 @@ function WelcomeScreen({ navigation }) {
         />
 
         <View style={styles.socialMedia}>
-          <TouchableOpacity onPress={() => console.log("Login with Google")}>
+          <TouchableOpacity onPress={() => loginWithGoogle()}>
             <MaterialCommunityIcons name="google" size={40} color="white" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => console.log("Login with Facebook")}>

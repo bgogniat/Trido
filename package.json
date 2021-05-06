@@ -30,7 +30,8 @@
     "yup": "^0.32.9",
     "expo-image-picker": "~9.2.0",
     "@react-native-picker/picker": "1.9.2",
-    "lottie-react-native": "~2.6.1"
+    "lottie-react-native": "~2.6.1",
+    "@react-native-community/viewpager": "4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

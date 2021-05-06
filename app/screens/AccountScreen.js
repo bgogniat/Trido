@@ -8,13 +8,13 @@ import {
   Image,
   Alert,
 } from "react-native";
-import Screen from "../components/Screen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import Icon from "../components/Icon";
-import Text from "../components/AppText/Text";
-import colors from "../config/colors";
 import { useAuth } from "../context/AuthContext";
+
+import colors from "../config/colors";
+import Icon from "../components/Icon";
+import Screen from "../components/Screen";
+import Text from "../components/AppText/Text";
 
 const options = [
   {

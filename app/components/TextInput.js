@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import defaultStyles from "../config/styles";
 import colors from "../config/colors";
+import defaultStyles from "../config/styles";
 
-function AppTextInput({ icon, width = "100%", pwd = false, ...otherProps }) {
+function AppTextInput({
+  icon,
+  width = "100%",
+  pwd = false,
+  send = false,
+  onPress,
+  ...otherProps
+}) {
   const [visible, setVisible] = useState(pwd);
   const [iconName, setIconName] = useState("eye");
   const passwordVisible = () => {
@@ -46,6 +53,21 @@ function AppTextInput({ icon, width = "100%", pwd = false, ...otherProps }) {
           >
             <MaterialCommunityIcons
               name={iconName}
+              size={25}
+              colors={colors.medium}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
+      {send && (
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <TouchableOpacity onPress={onPress} style={{ alignSelf: "flex-end" }}>
+            <MaterialCommunityIcons
+              name={"send"}
               size={25}
               colors={colors.medium}
             />

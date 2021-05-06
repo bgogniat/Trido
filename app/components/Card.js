@@ -33,12 +33,12 @@ function Card({ title, description, price, imageUrl, onPress }) {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 6,
     marginHorizontal: 20,
     backgroundColor: colors.white,
     borderWidth: 4,
     borderColor: colors.light,
-
+    marginBottom: 15,
     overflow: "hidden",
   },
 

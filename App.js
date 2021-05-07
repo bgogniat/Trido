@@ -34,7 +34,7 @@ export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer theme={navigationTheme}>
-        <ProfilePicture />
+        <DetailListingScreen />
       </NavigationContainer>
     </AuthProvider>
   );

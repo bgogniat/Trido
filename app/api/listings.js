@@ -19,15 +19,11 @@ const refStorage = app.storage().ref("listings/");
 
 const getListings = async () => {
   let listings = [];
-  const querySnapshot = await app
-    .firestore()
-    .collection("listings")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        listings.push(doc.data());
-      });
+  await refFireStore.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      listings.push(doc.data());
     });
+  });
   return listings;
 };
 

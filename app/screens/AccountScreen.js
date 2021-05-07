@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import {
   StyleSheet,
@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
   Image,
   Alert,
+  ScrollView,
+  RefreshControl,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAuth } from "../context/AuthContext";
@@ -15,6 +17,11 @@ import colors from "../config/colors";
 import Icon from "../components/Icon";
 import Screen from "../components/Screen";
 import Text from "../components/AppText/Text";
+import ProfilePicture from "../components/ProfilePicture";
+import * as ImagePicker from "expo-image-picker";
+import userApi from "../api/user";
+import AppActivityIndicator from "../components/AppActivityIndicator";
+import user from "../api/user";
 
 const options = [
   {
@@ -39,7 +46,46 @@ const options = [
 
 function AccountScreen({ navigation }) {
   const { currentUser, logout } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [image, setImage] = useState();
+  const [userInfo, setUserInfo] = useState();
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getInfo().then(() => setRefreshing(false));
+  }, []);
+
+  useEffect(() => {
+    getInfo();
+  }, []);
+
+  const getInfo = async () => {
+    setLoading(true);
+    try {
+      await userApi
+        .getUserInfo(currentUser.uid)
+        .then((doc) => setUserInfo(doc.data()));
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.ALL,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      userApi
+        .updateProfil(result.uri, currentUser.uid)
+        .catch((error) => console.log(error));
+    }
+  };
+
   const isLoggingOut = () => {
     Alert.alert("Log out", "Are you sure you want to log out?", [
       { text: "Yes", onPress: () => onLogOut() },
@@ -58,63 +104,76 @@ function AccountScreen({ navigation }) {
   };
 
   return (
-    <Screen style={{ backgroundColor: colors.light }}>
-      <View style={styles.account}>
-        <TouchableHighlight underlayColor={colors.light}>
-          <Image
-            style={styles.image}
-            source={require("../assets/background.jpg")}
-          />
-        </TouchableHighlight>
-        <View style={styles.accountInfo}>
-          <Text style={styles.title} numberOfLines={1}>
-            {"Bertrand"}
-          </Text>
-          <Text style={styles.subTitle} numberOfLines={1}>
-            {currentUser.email}
-          </Text>
-        </View>
-      </View>
+    <>
+      {loading ? (
+        <AppActivityIndicator visible={true} />
+      ) : (
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          style={{ backgroundColor: colors.light }}
+        >
+          <Screen>
+            <View style={styles.account}>
+              <ProfilePicture
+                onPress={pickImage}
+                imageUrl={userInfo.profilPicture}
+              />
 
-      <View style={styles.separator} />
+              <Text style={styles.title} numberOfLines={1}>
+                {userInfo.name}
+              </Text>
+              <Text style={styles.subTitle} numberOfLines={1}>
+                {userInfo.email}
+              </Text>
+            </View>
 
-      <View style={styles.container}>
-        <FlatList
-          data={options}
-          keyExtractor={(option) => option.id.toString()}
-          renderItem={({ item }) => (
-            <>
-              <TouchableHighlight
-                underlayColor={colors.light}
-                onPress={() => console.log(item.name)}
-              >
-                <View style={styles.subContainer}>
-                  <Icon name={item.icon} backgroundColor={item.color} />
-                  <View style={styles.detailsContainer}>
-                    <Text style={styles.title}>{item.name}</Text>
-                  </View>
-                  <MaterialCommunityIcons
-                    color={colors.medium}
-                    name="chevron-right"
-                    size={25}
-                  />
+            <View style={styles.separator} />
+
+            <View style={styles.container}>
+              <FlatList
+                data={options}
+                keyExtractor={(option) => option.id.toString()}
+                renderItem={({ item }) => (
+                  <>
+                    <TouchableHighlight
+                      underlayColor={colors.light}
+                      onPress={() => console.log(item.name)}
+                    >
+                      <View style={styles.subContainer}>
+                        <Icon name={item.icon} backgroundColor={item.color} />
+                        <View style={styles.detailsContainer}>
+                          <Text style={styles.title}>{item.name}</Text>
+                        </View>
+                        <MaterialCommunityIcons
+                          color={colors.medium}
+                          name="chevron-right"
+                          size={25}
+                        />
+                      </View>
+                    </TouchableHighlight>
+                    <View style={styles.separator} />
+                  </>
+                )}
+              />
+            </View>
+
+            <TouchableHighlight
+              underlayColor={colors.light}
+              onPress={isLoggingOut}
+            >
+              <View style={[styles.subContainer]}>
+                <Icon name="logout" backgroundColor={colors.red} />
+                <View style={styles.detailsContainer}>
+                  <Text style={styles.title}>{"Log out"}</Text>
                 </View>
-              </TouchableHighlight>
-              <View style={styles.separator} />
-            </>
-          )}
-        />
-      </View>
-
-      <TouchableHighlight underlayColor={colors.light} onPress={isLoggingOut}>
-        <View style={[styles.subContainer]}>
-          <Icon name="logout" backgroundColor={colors.red} />
-          <View style={styles.detailsContainer}>
-            <Text style={styles.title}>{"Log out"}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    </Screen>
+              </View>
+            </TouchableHighlight>
+          </Screen>
+        </ScrollView>
+      )}
+    </>
   );
 }
 const styles = StyleSheet.create({
@@ -155,9 +214,6 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: -5,
     backgroundColor: colors.white,
-    alignItems: "center",
-  },
-  accountInfo: {
     alignItems: "center",
   },
 });

@@ -62,9 +62,7 @@ function LoginScreen({ navigation }) {
               onChangeText={handleChange("email")}
             />
 
-            {touched.email && (
-              <Text style={{ color: "red" }}>{errors.email}</Text>
-            )}
+            {touched.email && <Text style={styles.error}>{errors.email}</Text>}
 
             <TextInput
               pwd={true}
@@ -77,7 +75,7 @@ function LoginScreen({ navigation }) {
             />
 
             {touched.password && (
-              <Text style={{ color: "red" }}>{errors.password}</Text>
+              <Text style={styles.error}>{errors.password}</Text>
             )}
             <View style={styles.buttonContainer}>
               <Button title="Login" onPress={handleSubmit} />
@@ -107,6 +105,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 20,
+  },
+  error: {
+    color: "red",
+    marginLeft: 10,
+    margin: -10,
   },
 });
 

@@ -15,19 +15,20 @@ import Screen from "../components/Screen";
 import AppTextInput from "../components/TextInput";
 import colors from "../config/colors";
 
+const listing = {
+  id: 1,
+  title: "New sofa",
+  description: "Good quality, used for 2 months",
+  price: 100,
+  images: [
+    require("../assets/background.jpg"),
+    require("../assets/logo_transparent.png"),
+  ],
+  category: "Furniture",
+  date: new Date(),
+};
+
 function DetailListingScreen({ route }) {
-  const listing = {
-    id: 1,
-    title: "New sofa",
-    description: "Good quality, used for 2 months",
-    price: 100,
-    images: [
-      require("../assets/background.jpg"),
-      require("../assets/logo_transparent.png"),
-    ],
-    category: "Furniture",
-    date: new Date(),
-  };
   return (
     <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={150}>
       <View style={styles.imageViewer}>
@@ -42,7 +43,7 @@ function DetailListingScreen({ route }) {
       <View style={styles.detailsContainer}>
         <View style={styles.subDetailsContainer}>
           <AppText style={styles.title}>{listing.title}</AppText>
-          <AppText style={styles.date}>
+          <AppText style={styles.datePublication}>
             {listing.date.toLocaleDateString()}
           </AppText>
         </View>
@@ -52,8 +53,9 @@ function DetailListingScreen({ route }) {
       <View style={styles.profilInfo}>
         <Image style={styles.profil} source={listing.images[0]} />
         <View>
-          <AppText style={styles.profilText}>Bertrand </AppText>
-          <AppText style={styles.profilText}>bertrand-7@hotmail.com</AppText>
+          <AppText style={styles.name}>Bertrand </AppText>
+          <AppText style={styles.email}>bertrand-7@hotmail.com</AppText>
+          <AppText style={styles.date}>Member since 20.12.2020</AppText>
         </View>
       </View>
       <View style={{ marginHorizontal: 10 }}>
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 300,
   },
-  date: {
+  datePublication: {
     color: colors.third,
   },
   detailsContainer: {
@@ -115,6 +117,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     borderRadius: 15,
     marginHorizontal: 10,
+  },
+  name: {
+    fontWeight: "500",
+  },
+  email: {
+    color: colors.medium,
+  },
+  date: {
+    marginTop: 1,
+    fontSize: 15,
+    fontStyle: "italic",
   },
 });
 

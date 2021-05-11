@@ -61,7 +61,11 @@ function ListingsScreen({ navigation }) {
   };
 
   useEffect(() => {
+    let isMounted = true;
     getData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -75,25 +79,22 @@ function ListingsScreen({ navigation }) {
             <Button title="Give it a second chance" onPress={getData} />
           </View>
         ) : (
-          <ScrollView
+          <FlatList
+            data={data}
+            keyExtractor={(data) => data.id}
+            renderItem={({ item }) => (
+              <Card
+                title={item.title}
+                price={item.price}
+                description={item.description}
+                imageUrl={item.images[0]}
+                onPress={() => navigation.navigate("DetailListing", item)}
+              />
+            )}
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
-          >
-            <FlatList
-              data={data}
-              keyExtractor={(data) => data.id}
-              renderItem={({ item }) => (
-                <Card
-                  title={item.title}
-                  price={item.price}
-                  description={item.description}
-                  imageUrl={item.images[0]}
-                  onPress={() => navigation.navigate("DetailListing", item)}
-                />
-              )}
-            />
-          </ScrollView>
+          />
         )}
       </Screen>
     </>

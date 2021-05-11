@@ -14,6 +14,7 @@ import Screen from "../components/Screen";
 import UploadScreen from "./UploadScreen";
 
 import listingsApi from "../api/listings";
+import { useAuth } from "../context/AuthContext";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -26,13 +27,15 @@ const validationSchema = Yup.object().shape({
 function AddListingScreen(props) {
   const [isUploading, setIsUploading] = useState(false);
   const [done, setDone] = useState(false);
+  const { currentUser } = useAuth();
   const handleSubmit = async (listing, { resetForm }) => {
     setIsUploading(true);
     listingsApi
-      .uploadListing(listing)
-      .then(() => setIsUploading(false))
+      .uploadListing(listing, currentUser.uid)
       .then(() => setDone(true))
-      .catch((error) => Alert.alert(error.message));
+      .then(() => setIsUploading(false))
+      .catch((error) => console.log(error.message));
+
     resetForm();
   };
 
@@ -110,7 +113,7 @@ function AddListingScreen(props) {
                 touched={touched}
                 values={values}
               />
-              <View style={{ marginVertical: 15 }}>
+              <View style={{ marginVertical: 10 }}>
                 <Button title="Publish" onPress={handleSubmit} />
               </View>
             </>

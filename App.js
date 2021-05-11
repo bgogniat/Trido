@@ -29,12 +29,13 @@ import AppActivityIndicator from "./app/components/AppActivityIndicator";
 import UploadScreen from "./app/screens/UploadScreen";
 import DetailListingScreen from "./app/screens/DetailListingScreen";
 import ProfilePicture from "./app/components/ProfilePicture";
+import MyListingScreen from "./app/screens/MyListingScreen";
 
 export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer theme={navigationTheme}>
-        <DetailListingScreen />
+        <CheckUser />
       </NavigationContainer>
     </AuthProvider>
   );

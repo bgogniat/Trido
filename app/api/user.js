@@ -11,6 +11,7 @@ const listing = {
 
 //Reference to the firestore collection for the listings
 const refFireStore = app.firestore().collection("users");
+const refFireStoreListings = app.firestore().collection("listings");
 //Reference to the storage for the
 const refStorage = app.storage().ref("usersProfilPicture/");
 
@@ -36,6 +37,26 @@ const addUserInfo = async (userId, email, name) => {
     .catch((error) => {
       console.error("Error adding user: ", error);
     });
+};
+
+const getListings = async (userId) => {
+  let listings = [];
+  await refFireStoreListings
+    .where("publisher", "==", userId.toString())
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+
+        listings.push(doc.data());
+        //console.log(doc.id, " => ", doc.data());
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
+
+  return listings;
 };
 
 const updateProfil = async (image, userId) => {
@@ -64,4 +85,4 @@ const updateProfil = async (image, userId) => {
     .catch((error) => console.log(error));
 };
 
-export default { addUserInfo, updateProfil, getUserInfo };
+export default { addUserInfo, updateProfil, getUserInfo, getListings };

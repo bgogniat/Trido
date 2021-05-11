@@ -3,7 +3,7 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 
 import colors from "../config/colors";
 
-function AppActivityIndicator({ visible = false }) {
+function AppActivityIndicator({ visible = true }) {
   if (!visible) return null;
 
   return (

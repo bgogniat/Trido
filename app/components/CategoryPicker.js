@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   subContainer: {
     borderRadius: 25,
     flexDirection: "row",
-    marginBottom: 10,
+    marginBottom: 8,
     alignItems: "center",
 
     marginHorizontal: 50,

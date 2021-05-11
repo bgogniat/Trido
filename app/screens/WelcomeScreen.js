@@ -14,11 +14,6 @@ import colors from "../config/colors";
 import { useAuth } from "../context/AuthContext";
 
 function WelcomeScreen({ navigation }) {
-  const { loginPopup } = useAuth();
-
-  const loginWithGoogle = () => {
-    loginPopup();
-  };
   return (
     <ImageBackground
       blurRadius={1}

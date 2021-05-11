@@ -27,7 +27,7 @@ const getListings = async () => {
   return listings;
 };
 
-const uploadListing = async (listing) => {
+const uploadListing = async (listing, userId) => {
   let refID = "";
   let urls = [];
   const data = new Object({
@@ -37,6 +37,7 @@ const uploadListing = async (listing) => {
     description: listing.description,
     createdAt: new Date(),
     images: [],
+    publisher: userId,
   });
 
   //Upload listing in firestore and set the ID for the image reference.
@@ -66,6 +67,7 @@ const uploadListing = async (listing) => {
 
 const uploadImages = async (images, id) => {
   let urls = [];
+  let ref = "";
   for (let i = 0; i < images.length; i++) {
     const response = await fetch(images[i]);
     const blob = await response.blob();
@@ -82,4 +84,16 @@ const uploadImages = async (images, id) => {
   return urls;
 };
 
-export default { getListings, uploadListing };
+const deleteListing = async (listingId) => {
+  await refFireStore
+    .doc(listingId)
+    .delete()
+    .then(() => {
+      console.log("Document successfully deleted!");
+    })
+    .catch((error) => {
+      console.error("Error removing document: ", error);
+    });
+};
+
+export default { getListings, uploadListing, deleteListing };

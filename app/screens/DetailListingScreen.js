@@ -87,10 +87,10 @@ function DetailListingScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
   imageViewer: {
     justifyContent: "center",
-    height: 300,
+    height: 250,
+    marginTop: 10,
   },
   datePublication: {
     color: colors.third,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
-  image: { width: "100%", height: 300, borderRadius: 15 },
+  image: { width: "100%", height: 250, borderRadius: 15 },
   title: {
     color: colors.primary,
     marginBottom: 5,

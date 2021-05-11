@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
-    }
+    },
+    "description": "Trido offers a second life to your old or unused objects. With all the object around the house is hard to find a use for all of them, but instead of throwing them away, try Trido first!",
+    "githubUrl": "https://github.com/bertrandPiccard/Trido"
   }
 }

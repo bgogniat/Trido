@@ -12,7 +12,7 @@ import * as ImagePicker from "expo-image-picker";
 
 import colors from "../config/colors";
 
-function ImagePickerInput({ imageUri, onChangeImage, size = 150 }) {
+function ImagePickerInput({ imageUri, onChangeImage, size = 130 }) {
   useEffect(() => {
     let isMounted = true;
     requestPermission();
@@ -53,7 +53,7 @@ function ImagePickerInput({ imageUri, onChangeImage, size = 150 }) {
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={[styles.container, { height: size, width: size }]}>
         {!imageUri && (
-          <MaterialCommunityIcons name="plus" size={40} color={colors.white} />
+          <MaterialCommunityIcons name="plus" size={30} color={colors.white} />
         )}
         {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
       </View>

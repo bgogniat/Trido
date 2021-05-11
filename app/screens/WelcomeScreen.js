@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonsContainer: {
-    bottom: 100,
+    bottom: 50,
 
     width: "80%",
 
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   logoContainer: {
-    top: 100,
+    top: 50,
     position: "absolute",
     alignItems: "center",
   },

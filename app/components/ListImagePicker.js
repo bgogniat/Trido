@@ -20,7 +20,7 @@ function ListImagePicker({ imageUris = [], onRemoveImage, onAddImage }) {
               <MaterialCommunityIcons
                 name="camera"
                 size={40}
-                color={colors.black}
+                color={colors.medium}
               />
             </View>
           ) : (
@@ -39,7 +39,7 @@ function ListImagePicker({ imageUris = [], onRemoveImage, onAddImage }) {
         </View>
       </ScrollView>
       <View style={styles.add}>
-        <ImagePickerInput onChangeImage={(uri) => onAddImage(uri)} size={60} />
+        <ImagePickerInput onChangeImage={(uri) => onAddImage(uri)} size={45} />
       </View>
     </View>
   );
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
-    height: 150,
+    height: 130,
     width: "100%",
   },
   image: {
@@ -65,9 +65,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.light,
     borderRadius: 15,
-    height: 150,
+    height: 130,
     justifyContent: "center",
-    width: 150,
+    width: 130,
   },
 });
 export default ListImagePicker;

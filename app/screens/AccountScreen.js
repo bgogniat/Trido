@@ -167,8 +167,8 @@ function AccountScreen({ navigation }) {
 }
 const styles = StyleSheet.create({
   container: {
-    marginTop: 25,
-    marginBottom: 25,
+    marginTop: 5,
+    marginBottom: 5,
   },
   subContainer: {
     alignItems: "center",
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
   account: {
     padding: 15,
-    marginTop: -10,
+    marginTop: -15,
     backgroundColor: colors.white,
     alignItems: "center",
   },

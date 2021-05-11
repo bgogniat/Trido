@@ -126,12 +126,12 @@ function AddListingScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    margin: 5,
   },
   error: {
     color: "red",
     marginLeft: 10,
-    margin: -10,
+    margin: -12,
   },
 });
 

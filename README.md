@@ -9,15 +9,23 @@ Users can easily publish new listing through the simple UI and get in touch when
 All the backend is hosted on Firebase
 
 Authentification through Firebase
+
 Listings and Users in Firestore
+
 Images in Storage
 
 ## Librairies
 
-Formik for the form and Yup as schema validator
+Formik for the form and Yup as schema
+validator
+
 @expo/vector-icons
+
 @expo-image-picker
+
 @react-navigation/native => Bottom-tab and stack
+
+@react-native-community/viewpager
 
 ## Functionalities
 
@@ -30,4 +38,5 @@ Formik for the form and Yup as schema validator
 ## Github and Expo links
 
 https://github.com/bertrandPiccard/Trido
+
 https://expo.io/@luxio3/projects/Trido

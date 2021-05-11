@@ -163,8 +163,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     flexDirection: "row",
     alignItems: "center",
-    padding: 15,
-    marginVertical: 10,
+    padding: 10,
+    marginVertical: 5,
   },
 
   icon: {

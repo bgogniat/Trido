@@ -113,7 +113,7 @@ function AddListingScreen(props) {
                 touched={touched}
                 values={values}
               />
-              <View style={{ marginVertical: 10 }}>
+              <View style={{ marginTop: 5 }}>
                 <Button title="Publish" onPress={handleSubmit} />
               </View>
             </>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     marginLeft: 10,
-    margin: -12,
+    margin: -6,
   },
 });
 

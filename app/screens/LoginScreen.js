@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   error: {
     color: "red",
-    margin: -10,
+    margin: -5,
     marginLeft: 10,
   },
 });

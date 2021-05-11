@@ -26,3 +26,8 @@ Formik for the form and Yup as schema validator
 - Feed with all the ads, possibilty to have detailed view.
 - Personalize profile picture
 - See my listings and possibility to delete
+
+## Github and Expo links
+
+https://github.com/bertrandPiccard/Trido
+https://expo.io/@luxio3/projects/Trido

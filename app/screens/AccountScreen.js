@@ -32,14 +32,14 @@ const options = [
     name: "Messages",
     icon: "mail",
     color: colors.secondary,
-    route: null,
+    route: "My listings",
   },
   {
     id: 3,
     name: "Settings",
     icon: "cog",
     color: colors.third,
-    route: null,
+    route: "My listings",
   },
 ];
 

@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     marginLeft: 10,
-    margin: -10,
+    margin: -5,
   },
   logo: {
     width: 160,

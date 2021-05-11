@@ -25,16 +25,16 @@ function ProfilePicture({ imageUrl, onPress }) {
 const styles = StyleSheet.create({
   image: {
     borderRadius: 100,
-    height: 170,
-    width: 170,
+    height: 150,
+    width: 150,
   },
   thumbnail: {
     alignItems: "center",
     borderRadius: 100,
     backgroundColor: colors.light,
-    height: 170,
+    height: 150,
     justifyContent: "center",
-    width: 170,
+    width: 150,
   },
 });
 

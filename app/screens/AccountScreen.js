@@ -9,15 +9,15 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAuth } from "../context/AuthContext";
+import * as ImagePicker from "expo-image-picker";
 
+import AppActivityIndicator from "../components/AppActivityIndicator";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
+import ProfilePicture from "../components/ProfilePicture";
 import Screen from "../components/Screen";
 import Text from "../components/AppText/Text";
-import ProfilePicture from "../components/ProfilePicture";
-import * as ImagePicker from "expo-image-picker";
 import userApi from "../api/user";
-import AppActivityIndicator from "../components/AppActivityIndicator";
 
 const options = [
   {
@@ -104,7 +104,7 @@ function AccountScreen({ navigation }) {
   return (
     <>
       {loading ? (
-        <AppActivityIndicator visible={true} />
+        <AppActivityIndicator />
       ) : (
         <Screen style={{ backgroundColor: colors.light }}>
           <View style={styles.account}>

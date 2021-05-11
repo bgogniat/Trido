@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
-    width: "100%",
     height: 150,
+    width: "100%",
   },
   image: {
     marginRight: 5,
@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   example: {
-    backgroundColor: colors.light,
-    height: 150,
-    width: 150,
-    borderRadius: 15,
     alignItems: "center",
+    backgroundColor: colors.light,
+    borderRadius: 15,
+    height: 150,
     justifyContent: "center",
+    width: 150,
   },
 });
 export default ListImagePicker;

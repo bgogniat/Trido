@@ -114,25 +114,23 @@ function SignupScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 10,
-    marginTop: 30,
-  },
-
   buttonContainer: {
     marginTop: 20,
   },
-
-  logo: {
-    width: 160,
-    height: 160,
-    alignSelf: "center",
-    marginBottom: 10,
+  container: {
+    margin: 10,
+    marginTop: 30,
   },
   error: {
     color: "red",
     marginLeft: 10,
     margin: -10,
+  },
+  logo: {
+    width: 160,
+    height: 160,
+    alignSelf: "center",
+    marginBottom: 10,
   },
 });
 

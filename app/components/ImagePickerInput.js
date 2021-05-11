@@ -14,7 +14,11 @@ import colors from "../config/colors";
 
 function ImagePickerInput({ imageUri, onChangeImage, size = 150 }) {
   useEffect(() => {
+    let isMounted = true;
     requestPermission();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const requestPermission = async () => {

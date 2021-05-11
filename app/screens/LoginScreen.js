@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import AppActivityIndicator from "../components/AppActivityIndicator";
 import Button from "../components/Button";
 import Screen from "../components/Screen";
 import Text from "../components/AppText/Text";
@@ -31,64 +32,72 @@ function LoginScreen({ navigation }) {
   };
 
   return (
-    <Screen style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../assets/logo.png")} />
-      </View>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={(values) =>
-          onHandleSubmit(values["email"], values["password"])
-        }
-        validationSchema={validationSchema}
-      >
-        {({
-          handleChange,
-          handleSubmit,
-          errors,
-          setFieldTouched,
-          setFieldValue,
-          touched,
-          values,
-        }) => (
-          <>
-            <TextInput
-              icon="email"
-              placeholder="Enter your email"
-              autoCapitalize="none"
-              autoCompleteType="email"
-              keyboardType="email-address"
-              onBlur={() => setFieldTouched("email")}
-              onChangeText={handleChange("email")}
-            />
+    <>
+      {loading ? (
+        <AppActivityIndicator />
+      ) : (
+        <Screen style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image style={styles.logo} source={require("../assets/logo.png")} />
+          </View>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            onSubmit={(values) =>
+              onHandleSubmit(values["email"], values["password"])
+            }
+            validationSchema={validationSchema}
+          >
+            {({
+              handleChange,
+              handleSubmit,
+              errors,
+              setFieldTouched,
+              setFieldValue,
+              touched,
+              values,
+            }) => (
+              <>
+                <TextInput
+                  icon="email"
+                  placeholder="Enter your email"
+                  autoCapitalize="none"
+                  autoCompleteType="email"
+                  keyboardType="email-address"
+                  onBlur={() => setFieldTouched("email")}
+                  onChangeText={handleChange("email")}
+                />
 
-            {touched.email && <Text style={styles.error}>{errors.email}</Text>}
+                {touched.email && (
+                  <Text style={styles.error}>{errors.email}</Text>
+                )}
 
-            <TextInput
-              pwd={true}
-              icon="form-textbox-lock"
-              placeholder="Enter your password"
-              autoCompleteType="password"
-              autoCapitalize="none"
-              onBlur={() => setFieldTouched("password")}
-              onChangeText={handleChange("password")}
-            />
+                <TextInput
+                  pwd={true}
+                  icon="form-textbox-lock"
+                  placeholder="Enter your password"
+                  autoCompleteType="password"
+                  autoCapitalize="none"
+                  onBlur={() => setFieldTouched("password")}
+                  onChangeText={handleChange("password")}
+                />
 
-            {touched.password && (
-              <Text style={styles.error}>{errors.password}</Text>
+                {touched.password && (
+                  <Text style={styles.error}>{errors.password}</Text>
+                )}
+                <View style={styles.buttonContainer}>
+                  <Button title="Login" onPress={handleSubmit} />
+                  <Button
+                    title="Sign up"
+                    color="secondary"
+                    onPress={() => navigation.navigate("Sign up")}
+                  />
+                </View>
+              </>
             )}
-            <View style={styles.buttonContainer}>
-              <Button title="Login" onPress={handleSubmit} />
-              <Button
-                title="Sign up"
-                color="secondary"
-                onPress={() => navigation.navigate("Sign up")}
-              />
-            </View>
-          </>
-        )}
-      </Formik>
-    </Screen>
+          </Formik>
+        </Screen>
+      )}
+    </>
   );
 }
 
@@ -98,18 +107,18 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   logo: {
-    width: 160,
-    height: 160,
     alignSelf: "center",
+    height: 160,
     marginBottom: 10,
+    width: 160,
   },
   buttonContainer: {
     marginTop: 20,
   },
   error: {
     color: "red",
-    marginLeft: 10,
     margin: -10,
+    marginLeft: 10,
   },
 });
 

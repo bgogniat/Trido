@@ -13,5 +13,5 @@ export default {
   dark: "#0c0c0c",
 };
 
-// https://mycolor.space/?hex=%230E6AC7&sub=1 For the palette colors
+// https://mycolor.space/?hex=%230E6AC7&sub=1
 // Cube palette #0E6AC7 #558E8A #EEE8A9

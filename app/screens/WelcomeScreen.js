@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  Image,
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Image, ImageBackground, StyleSheet, View } from "react-native";
 
 import AppText from "../components/AppText/Text";
 import Button from "../components/Button";
 import colors from "../config/colors";
-import { useAuth } from "../context/AuthContext";
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -35,18 +27,6 @@ function WelcomeScreen({ navigation }) {
           color="secondary"
           onPress={() => navigation.navigate("Sign up")}
         />
-
-        <View style={styles.socialMedia}>
-          <TouchableOpacity onPress={() => loginWithGoogle()}>
-            <MaterialCommunityIcons name="google" size={40} color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => console.log("Login with Facebook")}>
-            <MaterialCommunityIcons name="facebook" size={40} color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => console.log("Login with Twitter")}>
-            <MaterialCommunityIcons name="twitter" size={40} color="white" />
-          </TouchableOpacity>
-        </View>
       </View>
     </ImageBackground>
   );
@@ -59,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonsContainer: {
-    bottom: 50,
+    bottom: 100,
 
     width: "80%",
 
@@ -71,7 +51,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   logoContainer: {
-    top: 50,
+    top: 100,
     position: "absolute",
     alignItems: "center",
   },

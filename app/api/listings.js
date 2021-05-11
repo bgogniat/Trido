@@ -14,16 +14,18 @@ const listing = {
 
 //Reference to the firestore collection for the listings
 const refFireStore = app.firestore().collection("listings");
-//Reference to the storage for the
+//Reference to the image storage
 const refStorage = app.storage().ref("listings/");
 
 const getListings = async () => {
   let listings = [];
+
   await refFireStore.get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       listings.push(doc.data());
     });
   });
+
   return listings;
 };
 

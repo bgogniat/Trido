@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import Screen from "./Screen";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
@@ -30,18 +24,17 @@ function ProfilePicture({ imageUrl, onPress }) {
 
 const styles = StyleSheet.create({
   image: {
-    width: 170,
-    height: 170,
     borderRadius: 100,
+    height: 170,
+    width: 170,
   },
   thumbnail: {
-    width: 170,
-    height: 170,
-    backgroundColor: colors.light,
-    justifyContent: "center",
     alignItems: "center",
-
     borderRadius: 100,
+    backgroundColor: colors.light,
+    height: 170,
+    justifyContent: "center",
+    width: 170,
   },
 });
 

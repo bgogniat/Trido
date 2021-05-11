@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-  RefreshControl,
-} from "react-native";
+import { View, FlatList, RefreshControl } from "react-native";
 
 import AppActivityIndicator from "../components/AppActivityIndicator";
 import AppText from "../components/AppText/Text";

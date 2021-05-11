@@ -17,19 +17,19 @@ function Button({ title, onPress, color = "primary" }) {
 
 const styles = StyleSheet.create({
   button: {
+    alignItems: "center",
     backgroundColor: colors.primary,
     borderRadius: 15,
     justifyContent: "center",
-    alignItems: "center",
+    marginVertical: 10,
     padding: 15,
     width: "100%",
-    marginVertical: 10,
   },
   text: {
     color: colors.white,
     fontSize: 18,
-    textTransform: "uppercase",
     fontWeight: "bold",
+    textTransform: "uppercase",
   },
 });
 export default Button;

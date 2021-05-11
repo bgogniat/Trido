@@ -14,14 +14,14 @@ function AppActivityIndicator({ visible = true }) {
 }
 const styles = StyleSheet.create({
   overlay: {
-    position: "absolute",
-    backgroundColor: "white",
-    height: "100%",
-    width: "100%",
-    opacity: 0.7,
-    elevation: 1,
-    justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "white",
+    elevation: 1,
+    height: "100%",
+    justifyContent: "center",
+    opacity: 0.7,
+    position: "absolute",
+    width: "100%",
   },
 });
 

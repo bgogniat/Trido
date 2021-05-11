@@ -9,7 +9,7 @@ const listing = {
   listings: ["listing1", "listing2"],
 };
 
-//Reference to the firestore collection for the listings
+//Reference to the firestore collection for the users and listings
 const refFireStore = app.firestore().collection("users");
 const refFireStoreListings = app.firestore().collection("listings");
 //Reference to the storage for the
@@ -46,10 +46,7 @@ const getListings = async (userId) => {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-
         listings.push(doc.data());
-        //console.log(doc.id, " => ", doc.data());
       });
     })
     .catch((error) => {

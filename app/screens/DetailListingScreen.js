@@ -101,9 +101,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 15,
   },
-  viewPager: {
-    flex: 1,
-  },
   page: {
     justifyContent: "center",
     alignItems: "center",
@@ -144,6 +141,9 @@ const styles = StyleSheet.create({
   date: {
     marginTop: 1,
     fontSize: 15,
+  },
+  viewPager: {
+    flex: 1,
   },
 });
 

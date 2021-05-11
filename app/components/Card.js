@@ -32,12 +32,12 @@ function Card({ title, description, price, imageUrl, onPress }) {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 10,
-    marginTop: 6,
-    marginHorizontal: 20,
     backgroundColor: colors.white,
     borderWidth: 4,
     borderColor: colors.light,
+    borderRadius: 10,
+    marginTop: 6,
+    marginHorizontal: 20,
     marginBottom: 15,
     overflow: "hidden",
   },
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   image: {
-    width: "100%",
     height: 200,
+    width: "100%",
   },
   price: {
     fontWeight: "bold",
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   title: {
-    fontSize: 20,
     color: colors.primary,
+    fontSize: 20,
     marginBottom: 7,
   },
 });

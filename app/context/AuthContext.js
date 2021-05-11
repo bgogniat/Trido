@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 
-import { auth } from "../auth/firebase";
 import AppActivityIndicator from "../components/AppActivityIndicator";
+import { auth } from "../auth/firebase";
 
 const AuthContext = React.createContext();
 
@@ -38,7 +38,6 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
-
     signup,
     login,
     logout,

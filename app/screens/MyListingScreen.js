@@ -1,7 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -10,23 +7,28 @@ import {
   FlatList,
   Alert,
 } from "react-native";
-import userApi from "../api/user";
-import AppText from "../components/AppText/Text";
-import Screen from "../components/Screen";
-import colors from "../config/colors";
+
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAuth } from "../context/AuthContext";
+
 import AppActivityIndicator from "../components/AppActivityIndicator";
+import AppText from "../components/AppText/Text";
+import colors from "../config/colors";
 import listingsApi from "../api/listings";
-import { color } from "react-native-reanimated";
-import AppTextInput from "../components/TextInput";
+import userApi from "../api/user";
+import Screen from "../components/Screen";
 
 function MyListingScreen(props) {
   const { currentUser } = useAuth();
-  const [listings, setListings] = useState();
+  const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
     getListings();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const getListings = async () => {
@@ -47,7 +49,6 @@ function MyListingScreen(props) {
   const onDelete = async (listingId) => {
     try {
       setLoading(true);
-      //console.log(listingId);
       await listingsApi.deleteListing(listingId);
     } catch (error) {
       console.log(error.message);
@@ -61,7 +62,7 @@ function MyListingScreen(props) {
         <AppActivityIndicator />
       ) : (
         <Screen>
-          {listings ? (
+          {listings.length === 0 ? (
             <View style={styles.sad}>
               <AppText>No listing to display...</AppText>
               <MaterialCommunityIcons
@@ -109,27 +110,26 @@ function MyListingScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.light,
-    flexDirection: "row",
-    margin: 10,
-    borderRadius: 15,
     alignItems: "center",
+    backgroundColor: colors.light,
+    borderRadius: 15,
+    flexDirection: "row",
     justifyContent: "space-between",
+    margin: 10,
   },
   image: {
-    width: 100,
-    height: 100,
     borderRadius: 15,
+    height: 100,
     marginRight: 15,
+    width: 100,
   },
   icon: {
     alignSelf: "flex-start",
-    flex: 1,
-    justifyContent: "center",
-
-    paddingHorizontal: 15,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
+    flex: 1,
+    justifyContent: "center",
+    paddingHorizontal: 15,
   },
   text: {
     flex: 1,
@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   sad: {
-    flex: 1,
     alignItems: "center",
+    flex: 1,
   },
 });
 export default MyListingScreen;

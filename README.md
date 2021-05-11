@@ -21,7 +21,7 @@ Formik for the form and Yup as schema validator
 
 ## Functionalities
 
-- Login / Register
+- Login / Register / Log out
 - Publish an advert (data validation)
 - Feed with all the ads, possibilty to have detailed view.
 - Personalize profile picture

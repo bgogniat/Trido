@@ -40,7 +40,7 @@ function MyListingScreen(props) {
     setLoading(false);
   };
   const isDelete = (listingId) => {
-    Alert.alert("Log out", "Are you sure you want to delete the listing?", [
+    Alert.alert("Delete", "Are you sure you want to delete the listing?", [
       { text: "Yes", onPress: () => onDelete(listingId) },
       { text: "No" },
     ]);

@@ -35,8 +35,22 @@ validator
 - Personalize profile picture
 - See my listings and possibility to delete
 
-## Github and Expo links
+## App Overview
+### Welcome screen  
+![Welcome screen](app/assets/Screenshots/WelcomeScreenSmaller.png)
+### Sign up screen  
+![Signup screen](app/assets/Screenshots/SignupScreenSmaller.png)
+### Login screen  
+![Login screen](app/assets/Screenshots/LoginScreenSmaller.png)
+### Feed screen  
+![Feed screen](app/assets/Screenshots/FeedScreenSmaller.png)
+### Detail screen  
+![Detail screen](app/assets/Screenshots/DetailScreenSmaller.png)
+### Publish screen  
+![Publish screen](app/assets/Screenshots/PublishScreenSmaller.png)
+### Account screen  
+![Account screen](app/assets/Screenshots/AccountScreenSmaller.png)
+### MyListing screen  
+![MyListing screen](app/assets/Screenshots/MyListingScreenSmaller.png)
 
-https://github.com/bertrandPiccard/Trido
 
-https://expo.io/@luxio3/projects/Trido
